@@ -9,18 +9,32 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 
 import org.aerogear.mobile.auth.AuthService;
 import org.aerogear.mobile.auth.configuration.AuthServiceConfiguration;
 import org.aerogear.mobile.auth.user.UserPrincipal;
 import org.aerogear.mobile.example.R;
+import org.jboss.aerogear.android.core.Callback;
+import org.jboss.aerogear.android.unifiedpush.PushRegistrar;
+import org.jboss.aerogear.android.unifiedpush.RegistrarManager;
+import org.jboss.aerogear.android.unifiedpush.fcm.AeroGearFCMPushConfiguration;
+
+import java.net.URI;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity
                 implements NavigationView.OnNavigationItemSelectedListener {
+
+    private final String VARIANT_ID       = "f2a7fb40-9694-400c-a2ca-ee6c9fe791b4";
+    private final String SECRET           = "b0150669-a40a-4c4d-b363-ca7f570ec479";
+    private final String FCM_SENDER_ID    = "916837949223";
+    private final String UNIFIED_PUSH_URL = "http://127.0.0.1:9999/ag-push/";
+
+    private final String TAG = "debug";
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -36,6 +50,27 @@ public class MainActivity extends BaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        RegistrarManager.config("register", AeroGearFCMPushConfiguration.class)
+            .setPushServerURI(URI.create(UNIFIED_PUSH_URL))
+            .setSenderId(FCM_SENDER_ID)
+            .setVariantID(VARIANT_ID)
+            .setSecret(SECRET)
+            .asRegistrar();
+
+        PushRegistrar registrar = RegistrarManager.getRegistrar("register");
+        registrar.register(getApplicationContext(), new Callback<Void>() {
+            @Override
+            public void onSuccess(Void data) {
+                Log.i(TAG, "Registration Succeeded!");
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                Log.e(TAG, e.getMessage(), e);
+            }
+        });
+
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
