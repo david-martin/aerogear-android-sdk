@@ -32,7 +32,7 @@ public class MainActivity extends BaseActivity
     private final String VARIANT_ID       = "f2a7fb40-9694-400c-a2ca-ee6c9fe791b4";
     private final String SECRET           = "b0150669-a40a-4c4d-b363-ca7f570ec479";
     private final String FCM_SENDER_ID    = "916837949223";
-    private final String UNIFIED_PUSH_URL = "http://127.0.0.1:9999/ag-push/";
+    private final String UNIFIED_PUSH_URL = "http://192.168.1.12:9999/ag-push/";
 
     private final String TAG = "debug";
 

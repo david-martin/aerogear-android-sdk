@@ -46,8 +46,12 @@ dependencies {
     implementation "com.android.support:design:$android_support_version"
     implementation "com.android.support.constraint:constraint-layout:1.0.2"
     implementation "com.jakewharton:butterknife:8.8.1"
+    implementation 'com.google.firebase:firebase-messaging:11.0.4'
     annotationProcessor "com.jakewharton:butterknife-compiler:8.8.1"
     implementation "com.github.nitrico.lastadapter:lastadapter:2.3.0"
     implementation "com.google.code.gson:gson:2.8.2"
     compile 'org.jboss.aerogear:aerogear-android-push:5.0.0'
 }
+
+
+apply plugin: 'com.google.gms.google-services'
