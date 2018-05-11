@@ -13,6 +13,10 @@
             android:icon="@drawable/ic_http"
             android:title="@string/nav_http" />
         <item
+            android:id="@+id/nav_graphql"
+            android:icon="@drawable/ic_graphql"
+            android:title="@string/nav_graphql" />
+        <item
             android:id="@+id/nav_auth"
             android:icon="@drawable/ic_https"
             android:title="@string/nav_auth" />

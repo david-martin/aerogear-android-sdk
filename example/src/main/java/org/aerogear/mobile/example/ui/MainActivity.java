@@ -82,6 +82,9 @@ public class MainActivity extends BaseActivity
             case R.id.nav_http:
                 navigateTo(new HttpFragment());
                 break;
+            case R.id.nav_graphql:
+                navigateTo(new GraphQLFragment());
+                break;
             case R.id.nav_auth:
                 UserPrincipal currentUser = authService.currentUser();
                 if (currentUser != null) {

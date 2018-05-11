@@ -1,0 +1,6 @@
+query listHeroes($episode: Episode!) {
+  hero(episode: $episode) {
+    id
+    name
+  }
+}
